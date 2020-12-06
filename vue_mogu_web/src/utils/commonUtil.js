@@ -8,9 +8,9 @@ import { Message } from 'element-ui'
  */
 const ECode = {
   // 默认页大小
-  SUCCESS: "success",
+  SUCCESS: 'success',
   // 默认页码
-  ERROR: "error",
+  ERROR: 'error'
 }
 
 /** **********************************************************/
@@ -47,9 +47,9 @@ const FUNCTIONS = {
   // 切割字符串
   splitStr: (str, flagCount) => {
     if (str == null || str == '') {
-      return ""
-    } else if(str.length > flagCount) {
-      return str.substring(0, flagCount) + "..."
+      return ''
+    } else if (str.length > flagCount) {
+      return str.substring(0, flagCount) + '...'
     } else {
       return str
     }
@@ -72,8 +72,8 @@ const FUNCTIONS = {
    * @param text
    */
   markdownToHtml: text => {
-    let converter = new showdown.Converter();
-    return converter.makeHtml(text);
+    let converter = new showdown.Converter()
+    return converter.makeHtml(text)
   },
   /**
    * 将Html转成Markdown
@@ -89,21 +89,20 @@ const FUNCTIONS = {
    * @param text：正文
    */
   htmlToMarkdownFile: (title, text) => {
-
-    title = title || "默认标题"
+    title = title || '默认标题'
 
     let turndownService = new TurndownService()
 
     let markdown = turndownService.turndown(text)
 
-    //创建一个blob对象,file的一种
+    // 创建一个blob对象,file的一种
     let blob = new Blob([markdown])
 
     let link = document.createElement('a')
 
     link.href = window.URL.createObjectURL(blob)
 
-    //配置下载的文件名
+    // 配置下载的文件名
     link.download = title + '.md'
 
     link.click()
@@ -113,27 +112,27 @@ const FUNCTIONS = {
    * @type {{success: message.success, warning: message.warning, error: message.error, info: message.info}}
    */
   message: {
-    success: function(message) {
+    success: function (message) {
       Message({
         showClose: true,
         message: message || '成功',
         type: 'success'
       })
     },
-    warning: function(message) {
+    warning: function (message) {
       Message({
         showClose: true,
         message: message || '警告',
         type: 'warning'
       })
     },
-    info: function(message) {
+    info: function (message) {
       Message({
         showClose: true,
         message: message || '提示'
       })
     },
-    error: function(message) {
+    error: function (message) {
       Message({
         showClose: true,
         message: message || '异常',

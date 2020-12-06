@@ -21,43 +21,8 @@
           <el-button class="loginBtn" type="primary" @click="startLogin" :disabled="loginType.password">登录</el-button>
           <el-button class="registerBtn" type="info" @click="goRegister" :disabled="loginType.password">注册</el-button>
         </el-row>
-
-        <el-row class="elRow">
-          <el-tooltip content="码云" placement="bottom">
-            <el-button type="danger" circle @click="goAuth('gitee')" :disabled="loginType.gitee">
-              <span class="iconfont">&#xe602;</span>
-            </el-button>
-          </el-tooltip>
-
-          <el-tooltip content="Github" placement="bottom">
-            <el-button type="info" circle @click="goAuth('github')" :disabled="loginType.github">
-              <span class="iconfont">&#xe64a;</span>
-            </el-button>
-          </el-tooltip>
-
-          <el-tooltip content="QQ" placement="bottom">
-            <el-button type="primary" circle @click="goAuth('qq')" :disabled="loginType.qq">
-              <span class="iconfont">&#xe601;</span>
-            </el-button>
-          </el-tooltip>
-
-          <el-tooltip content="微信" placement="bottom">
-            <el-button type="success" circle @click="goAuth('wechat')" :disabled="loginType.wechat">
-              <span class="iconfont">&#xe66f;</span>
-            </el-button>
-          </el-tooltip>
-
-        </el-row>
-        <div class="loginTip">目前登录方式支持
-          <span v-if="!loginType.password"> 账号密码 </span>
-          <span v-if="!loginType.gitee"> 码云 </span>
-          <span v-if="!loginType.github"> Github </span>
-          <span v-if="!loginType.qq"> QQ </span>
-          <span v-if="!loginType.wechat"> 微信 </span>
-        </div>
       </el-form>
     </div>
-
     <div class="box registerBox" v-if="showLogin == false">
       <div class="title">
         <span class="t1">
@@ -134,7 +99,7 @@ export default {
       },
       // 登录类别
       loginType: {
-        password: true,
+        password: false,
         gitee: true,
         github: true,
         qq: true,
@@ -184,39 +149,7 @@ export default {
     }
   },
   components: {},
-  created () {
-    this.setLoginTypeList()
-  },
   methods: {
-    setLoginTypeList: function () {
-      // 获取登录方式列表
-      let webConfigData = this.$store.state.app.webConfigData
-      if (webConfigData.loginTypeList != undefined) {
-        let loginTypeList = JSON.parse(webConfigData.loginTypeList)
-        for (let a = 0; a < loginTypeList.length; a++) {
-          switch (loginTypeList[a]) {
-            case '1': {
-              this.loginType.password = false
-            } break
-            case '2': {
-              this.loginType.gitee = false
-            } break
-            case '3': {
-              this.loginType.github = false
-            } break
-            case '4': {
-              this.loginType.qq = false
-            } break
-            case '5': {
-              this.loginType.wechat = false
-            } break
-            default: {
-              console.log('登录方式设置有误！！')
-            }
-          }
-        }
-      }
-    },
     startLogin: function () {
       this.$refs.loginForm.validate((valid) => {
         console.log('开始校验', valid)
@@ -230,7 +163,7 @@ export default {
           localLogin(params).then(response => {
             if (response.code == this.$ECode.SUCCESS) {
               // 跳转到首页
-              location.replace(this.vueMoguWebUrl + '/#/?token=' + response.data)
+              // location.replace(this.vueMoguWebUrl + '/#/?token=' + response.data)
               window.location.reload()
             } else {
               this.$message({
@@ -251,7 +184,7 @@ export default {
           let passWord2 = this.registerForm.password2
           if (passWord != passWord2) {
             this.$message({
-              type: 'success',
+              type: 'error',
               message: '两次密码不一致'
             })
             return

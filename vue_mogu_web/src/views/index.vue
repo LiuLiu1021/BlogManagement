@@ -4,7 +4,6 @@
     <div class="picsbox">
       <FirstRecommend></FirstRecommend>
       <!--banner end-->
-
       <!-- 二级推荐 -->
       <div class="toppic">
         <li v-for="item in secondData" :key="item.title" @click="goToInfo(item)">
@@ -24,7 +23,7 @@
     <div class="blogsbox">
       <div
         v-for="item in newBlogData"
-        :key="item.id"
+        :key="item.user_id"
         class="blogs"
         data-scroll-reveal="enter bottom over 1s"
       >
@@ -32,11 +31,11 @@
           <a href="javascript:void(0);" @click="goToInfo(item)">{{ item.title }}</a>
         </h3>
 
-        <span class="blogpic">
-          <a href="javascript:void(0);" @click="goToInfo(item)" title>
-            <img v-if="item.photoList" :src="item.photoList[0]" alt>
-          </a>
-        </span>
+<!--        <span class="blogpic">-->
+<!--          <a href="javascript:void(0);" @click="goToInfo(item)" title>-->
+<!--            <img v-if="item.photoList" :src="item.photoList[0]" alt>-->
+<!--          </a>-->
+<!--        </span>-->
 
         <p class="blogtext">{{ item.summary }}</p>
         <div class="bloginfo">
@@ -44,14 +43,14 @@
 
             <li class="author">
               <span class="iconfont">&#xe60f;</span>
-              <a href="javascript:void(0);" @click="goToAuthor(item.author)">{{ item.author }}</a>
+              <a href="javascript:void(0);" @click="goToAuthor(item.user_id)">{{ item.user_id }}</a>
             </li>
-            <li class="lmname" v-if="item.labels">
+            <li class="lmname" v-if="item.label">
               <span class="iconfont">&#xe603;</span>
               <a
                 href="javascript:void(0);"
-                @click="goToList(item.labels[0])"
-              >{{ item.labels[0]}}</a>
+                @click="goToList(item.label)"
+              >{{ item.label}}</a>
             </li>
             <li class="view">
               <span class="iconfont">&#xe8c7;</span>
@@ -159,7 +158,8 @@ export default {
     // 是否排序
     secondParams.append('useSort', 1)
     getBlogByLevel(secondParams).then(response => {
-      if (response.code === this.$ECode.SUCCESS) {
+      console.log(response)
+      if (response.data.code === this.$ECode.SUCCESS) {
         this.secondData = response.data.records
       }
     }).catch(error => {
@@ -227,11 +227,11 @@ export default {
       params.append('currentPage', this.currentPage)
       params.append('pageSize', this.pageSize)
       getNewBlog(params).then(response => {
-        if (response.code === this.$ECode.SUCCESS) {
+        if (response.data.code === this.$ECode.SUCCESS) {
           that.newBlogData = response.data.records
           that.total = response.data.total
           that.pageSize = response.data.size
-          that.currentPage = response.data.current
+          that.currentPage = response.data.currentPage
         }
         that.loadingInstance.close()
         // eslint-disable-next-line handle-callback-err
@@ -239,7 +239,6 @@ export default {
         for (let i = 0; i < 5; ++i) {
           this.newBlogData.push({title: 'test', author: 'ptss', labels: ['技术', '数据库'], summary: '略略略', clickCount: 100, likeCount: 200, time: '2020-12-2'})
         }
-
         that.loadingInstance.close()
       })
     },
@@ -252,7 +251,7 @@ export default {
       params.append('currentPage', that.currentPage)
       params.append('pageSize', that.pageSize)
       getNewBlog(params).then(response => {
-        if (response.code === this.$ECode.SUCCESS && response.data.records.length > 0) {
+        if (response.data.code === this.$ECode.SUCCESS && response.data.records.length > 0) {
           that.isEnd = false
           var newData = that.newBlogData.concat(response.data.records)
           that.newBlogData = newData

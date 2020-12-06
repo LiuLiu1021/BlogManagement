@@ -12,34 +12,35 @@ import router from './router'
 import store from './store'
 
 // 引入公共JS
-import "@/assets/iconfont/iconfont.css";
-import '../static/css/ckeditor.css';
-import '../static/css/index.css';
-Vue.config.productionTip = false
-
+import '@/assets/iconfont/iconfont.css'
+import '../static/css/ckeditor.css'
+import '../static/css/index.css'
+import CKEditor from 'ckeditor4-vue'
 
 import xss from 'xss'
+
+// 引入全局工具类
+import prototype from './utils/prototype'
+Vue.config.productionTip = false
 // 定义全局XSS解决方法
 Object.defineProperty(Vue.prototype, '$xss', {
   value: xss
 })
-
-// 引入全局工具类
-import prototype from './utils/prototype'
 Vue.use(prototype)
 
 Vue.directive('highlight', function (el) {
-  let blocks = el.querySelectorAll('pre code');
+  let blocks = el.querySelectorAll('pre code')
   blocks.forEach((block) => {
     hljs.highlightBlock(block)
   })
 })
+Vue.use(CKEditor)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  //需要将store和vue实例进行关联，这里将其传递进去
+  // 需要将store和vue实例进行关联，这里将其传递进去
   store,
   components: { App },
   template: '<App/>'

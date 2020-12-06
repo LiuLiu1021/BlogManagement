@@ -217,7 +217,7 @@ export default {
     getBlogByUid(params).then(response => {
       if (response.code === this.$ECode.SUCCESS) {
         this.blogData = response.data
-        this.blogUid = response.data.uid
+        // this.blogUid = response.data.uid
         // this.blogOid = response.data.oid
         this.commentInfo.blogUid = response.data.id
         this.getSameBlog()
@@ -314,32 +314,23 @@ export default {
       this.currentPage = val
       this.getCommentDataList()
     },
-    getSameBlog () {
-      var blogParams = new URLSearchParams()
-      blogParams.append('blogUid', this.blogUid)
-      getSameBlogByBlogUid(blogParams).then(response => {
-        if (response.code === this.$ECode.SUCCESS) {
-          this.sameBlogData = response.data.records
-        }
-      })
-    },
     // 设置是否开启评论和赞赏
     setCommentAndAdmiration () {
-      // let webConfigData = this.$store.state.app.webConfigData
-      // if (webConfigData.createTime) {
-      //   this.openAdmiration = webConfigData.openAdmiration
-      //   this.openComment = webConfigData.openComment
-      // } else {
-      //   getWebConfig().then(response => {
-      //     if (response.code === this.$ECode.SUCCESS) {
-      //       webConfigData = response.data
-      //       // 存储在Vuex中
-      //       this.setWebConfigData(response.data)
-      //       this.openAdmiration = webConfigData.openAdmiration
-      //       this.openComment = webConfigData.openComment
-      //     }
-      //   })
-      // }
+      let webConfigData = this.$store.state.app.webConfigData
+      if (webConfigData.createTime) {
+        this.openAdmiration = webConfigData.openAdmiration
+        this.openComment = webConfigData.openComment
+      } else {
+        getWebConfig().then(response => {
+          if (response.code === this.$ECode.SUCCESS) {
+            webConfigData = response.data
+            // 存储在Vuex中
+            this.setWebConfigData(response.data)
+            this.openAdmiration = webConfigData.openAdmiration
+            this.openComment = webConfigData.openComment
+          }
+        })
+      }
     },
     submitBox (e) {
       let params = {}

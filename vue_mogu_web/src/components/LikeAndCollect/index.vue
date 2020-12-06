@@ -6,8 +6,8 @@
         (<b id="diggnum">{{praiseCount}}</b>)
       </span>
     </p>
-    <p class="dasbox">
-      <a href="javascript:void(0)" @click="collectToggle()" class="collect" title="收藏">收藏</a>
+    <p class="dasbox"  @click="collectToggle()">
+      <a href="javascript:void(0)"  class="collect" title="收藏">收藏</a>
     </p>
     <div class="hide_box" v-if="showCollect"></div>
     <div class="shang_box" v-if="showCollect">
@@ -17,7 +17,7 @@
           <el-input v-model="collectName" placeholder="收藏博客命名"></el-input>
         </el-form-item>
         <el-row class="btn">
-          <el-button class="agreeBtn" type="primary" @click="collectBlog(blogUid)" >确认</el-button>
+          <el-button class="agreeBtn" type="primary" @click="collectBlog(blogUid,this.collectName)" >确认</el-button>
           <el-button class="cancelBtn" type="info" @click="collectToggle()" >取消</el-button>
         </el-row>
       </el-form>
@@ -72,7 +72,7 @@ export default {
       var params = new URLSearchParams()
       params.append('uid', uid)
       praiseBlogByUid(params).then(response => {
-        if (response.code === this.$ECode.SUCCESS) {
+        if (response.data.code === this.$ECode.SUCCESS) {
           this.$notify({
             title: '成功',
             message: '点赞成功',
@@ -94,16 +94,17 @@ export default {
       var params = new URLSearchParams()
       params.append('uid', uid)
       getBlogPraiseCountByUid(params).then(response => {
-        if (response.code === this.$ECode.SUCCESS) {
+        if (response.data.code === this.$ECode.SUCCESS) {
           this.praiseCount = response.data
         }
       })
     },
-    collectBlog: function (uid) {
+    collectBlog: function (uid, collectName) {
       var params = new URLSearchParams()
       params.append('uid', uid)
+      params.append('name', collectName)
       addCollectBlog(params).then(response => {
-        if (response.code === this.$ECode.SUCCESS) {
+        if (response.data.code === this.$ECode.SUCCESS) {
           this.collectToggle()
         }
       }).catch(function () {
@@ -116,6 +117,9 @@ export default {
 
 <style>
 .diggit {
+  cursor: pointer;
+}
+.dasbox {
   cursor: pointer;
 }
 </style>

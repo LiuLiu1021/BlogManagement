@@ -14,10 +14,16 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^23.1.0",
+    "@ckeditor/ckeditor5-vue": "^2.0.1",
     "axios": "^0.18.0",
+    "ckeditor4-vue": "^1.2.0",
+    "clipboard": "^2.0.6",
+    "codemirror": "^5.56.0",
     "element-ui": "^2.13.1",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
+    "vditor": "^3.4.7",
     "vue": "^2.5.2",
     "vue-image-crop-upload": "^2.5.0",
     "vue-router": "^3.0.1",

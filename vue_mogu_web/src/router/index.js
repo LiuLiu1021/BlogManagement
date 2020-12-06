@@ -19,7 +19,8 @@ export const constantRouterMap = [
       { path: '/tag', component: () => import('@/views/tag') },
       { path: '/time', component: () => import('@/views/time') },
       { path: '/info', component: () => import('@/views/info') },
-      { path: '/messageBoard', component: () => import('@/views/messageBoard') }
+      { path: '/messageBoard', component: () => import('@/views/messageBoard') },
+      { path: '/blog', component: () => import('@/views/blog') }
     ]
   },
   { path: '/404', component: () => import('@/views/404') },

@@ -111,7 +111,6 @@
           <el-dropdown-item command="goUserInfo" v-show="isLogin">个人中心</el-dropdown-item>
           <el-dropdown-item command="logout" v-show="isLogin">退出登录</el-dropdown-item>
         </el-dropdown-menu>
-
       </el-dropdown>
 
     </nav>
@@ -519,7 +518,7 @@ export default {
       showHead: false, // 控制导航栏的弹出
       isCdTopVisible: false,
       isVisible: true, // 控制web端导航的隐藏和显示
-      isLogin: false,
+      isLogin: true,
       showLogin: false, // 显示登录框
       userInfo: { // 用户信息
       },
@@ -617,7 +616,7 @@ export default {
     ...mapMutations(['setUserInfo', 'setLoginState', 'setWebConfigData']),
     // 搜索
     search: function () {
-      if (this.keyword == '' || this.keyword.trim() == '') {
+      if (this.keyword === '' || this.keyword.trim() === '') {
         this.$notify.error({
           title: '错误',
           message: '关键字不能为空',
@@ -670,7 +669,7 @@ export default {
       params.pageSize = 10
       params.currentPage = 1
       getCommentListByUser(params).then(response => {
-        if (response.code == this.$ECode.SUCCESS) {
+        if (response.code === this.$ECode.SUCCESS) {
           this.commentList = response.data.commentList
           this.replyList = response.data.replyList
         }
@@ -681,7 +680,7 @@ export default {
     getFeedback: function () {
       let params = {}
       getFeedbackList(params).then(response => {
-        if (response.code == this.$ECode.SUCCESS) {
+        if (response.code === this.$ECode.SUCCESS) {
           this.feedbackList = response.data.records
         }
       })
@@ -693,7 +692,7 @@ export default {
       params.pageSize = 10
       params.currentPage = 1
       getPraiseListByUser(params).then(response => {
-        if (response.code == this.$ECode.SUCCESS) {
+        if (response.code === this.$ECode.SUCCESS) {
           this.praiseList = response.data.records
         }
       })
@@ -744,11 +743,11 @@ export default {
       this.imagecropperKey = this.imagecropperKey + 1
       console.log('判断激活', this.activeName)
       // 判断当前激活的页面
-      if (this.activeName == '0') {
+      if (this.activeName === '0') {
         // 激活个人中心页面
         this.userInfo.photoUrl = resData[0].url
         this.userInfo.avatar = resData[0].uid
-      } else if (this.activeName == '5') {
+      } else if (this.activeName === '5') {
         let photoList = []
         photoList.push(resData[0].url)
         this.blogLink.photoList = photoList
@@ -781,7 +780,7 @@ export default {
               console.log('校验失败')
             } else {
               editUser(this.userInfo).then(response => {
-                if (response.code == this.$ECode.SUCCESS) {
+                if (response.code === this.$ECode.SUCCESS) {
                   this.$message({
                     type: 'success',
                     message: response.data
@@ -803,7 +802,7 @@ export default {
               console.log('校验失败')
             } else {
               replyBlogLink(this.blogLink).then(response => {
-                if (response.code == this.$ECode.SUCCESS) {
+                if (response.code === this.$ECode.SUCCESS) {
                   this.$message({
                     type: 'success',
                     message: response.data
