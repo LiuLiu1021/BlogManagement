@@ -1,0 +1,283 @@
+@import url(variables.css);
+
+h1 {
+    font-family: var(--font-custom-1);
+    font-weight: 600;
+    font-size: 3em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+/*HEADER START*/
+
+header.header_cst {
+    position: sticky;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    /*在最前页面显示，用户能够看到，遮盖后面的内容*/
+}
+header.header_cst .header_cst_inner {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr;
+    grid-auto-rows: 100px;
+    position: relative;
+}
+.header_cst_logo, 
+nav.menu_cst,
+.header_cst_contact {
+    display: flex;
+    align-items: center;
+}
+.header_cst_logo {
+    justify-content: start;
+    /*横向居中对齐*/
+    text-align: center;
+    /*垂直居中对齐*/
+}
+.header_cst_logo img {
+    max-height: 100px;
+    width: auto;
+}
+nav.menu_cst {
+    justify-content: center;
+}
+nav.menu_cst ul {
+    list-style: none;
+    display: flex;
+    text-transform: uppercase;
+}
+nav.menu_cst ul li {
+    padding: 0 20px;
+    /*设置左右间距*/
+}
+nav.menu_cst ul li a {
+    color: #000;
+    /*字体颜色*/
+    font-family: var(--font-custom-2);
+    /*字体类型，直接调用variable.css中的font-custom-2变量以减少代码量*/
+    font-weight: 500;
+    /*字体粗细*/
+    letter-spacing: 1px;
+    /*定义字间距*/
+    /*background-color: transparent;*/
+    /*定义背景颜色*/
+    padding: 10px 10px;
+    border-radius: 5px;
+    /*设置圆角边框*/
+    transition: background-color 0.5s,
+                color 0.1s;
+    /*定义变回此状态时背景颜色以及字体颜色产生的所需时间*/
+}
+nav.menu_cst ul li a:hover {
+    background-color: #ffc371;
+    color: #fff;
+    transition: background-color 0.5s,
+                color 0.1s;
+    /*定义成为悬浮状态时背景颜色以及字体颜色产生的所需时间*/
+}
+.header_cst_contact {
+    justify-content: flex-end;
+}
+.header_cst_contact a {
+    background-color: #ffc371;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: var(--font-custom-1);
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+.header_cst_contact a:hover {
+    background-color: #fdac3d;
+    transition: background-color 0.2s ease-in;
+}
+.header_cst_menu {
+    display: none;
+}
+/*HEADER END*/
+
+/* BANNER START */
+.banner_cst {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--container-size);
+    height: calc(100vh - 100px);
+    margin: 0 auto;
+}
+.banner_cst .banner_cst_text {
+    color: #fff;
+    font-family: var(--font-custom-1);
+    font-weight: 400;
+    font-size: 1.5em;
+}
+.banner_cst .banner_cst_text h1 { 
+    font-size: 2.6em;
+}
+.banner_cst_image img {
+    max-width: 700px;
+}
+.social_share {
+    display: inline-block;
+    margin-top: 50px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.7em;
+    font-family: var(--font-custom-1);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;;
+    position: absolute;
+}
+.social_share a img {
+    max-width: 40px;
+    margin-top: 10px;
+}
+.social_share a img:hover {
+    transform: rotate(45deg);
+    transition: transform 0.3s;
+}
+/* BANNER END */
+
+@media (max-width: 1699px) {
+    .banner_cst { 
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 1300px) {
+    nav.menu_cst {
+        display: none;
+    }
+    header.header_cst .header_cst_inner { 
+        grid-template-columns: 8fr 3fr;
+    }
+    .header_cst_contact {
+        margin-right: 80px;
+    }
+    nav.header_cst_menu {
+        width: 40px;
+        height: 40px;
+        display: block;
+        /*background-image: url(../img/menu_icon.svg);*/
+        background-size: 100% auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        top: calc(50% - 20px);
+        cursor: pointer;
+    }
+    nav.header_cst_menu ul {
+        visibility: hidden;
+        min-width: 200px;
+        background-color: #fff;
+        list-style: none;
+        padding: 20px;
+        position: absolute;
+        right: 0;
+        top: 50px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 10px #a6a6a6;
+        transition: visibility 0.3s ease-out;
+    }
+    nav.header_cst_menu:hover ul {
+        visibility: visible;
+    }
+    nav.header_cst_menu ul li a {
+        color: #000;
+        font-family: var(--font-custom-2);
+        font-weight: 500;
+        font-size: 1em;
+        line-height: 1.3em;
+        text-transform: uppercase;
+    }
+    nav.header_cst_menu ul li a:hover {
+        color: var(--custom-color-1);
+    }
+    .banner_cst {
+        max-width: 100%;
+        width: 100%;
+        padding: 0 20px;
+    }
+    .banner_cst_image img {
+        max-width: 500px;
+    }
+
+}
+
+
+@media (max-width: 1199px) {
+    .banner_cst .banner_cst_text {
+        font-size: 1.5em;
+    }
+    .banner_cst .banner_cst_text h1 { 
+        font-size: 2em;
+    }
+    header.header_cst .header_cst_inner {
+        grid-auto-rows: 80px;
+    }
+    .banner_cst {
+        height: calc(100vh - 80px);
+    }
+}
+
+@media (max-width: 991px) {
+    header.header_cst .header_cst_inner { 
+        grid-template-columns: 1fr 1fr;
+    }
+    .banner_cst {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .banner_cst_image img {
+        max-width: 400px;
+    }
+    .banner_cst .banner_cst_text {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+    .banner_cst .banner_cst_text h1 { 
+        font-size: 2em;
+    }
+    .social_share {
+        bottom: 2%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    header.header_cst .header_cst_inner {
+        grid-auto-rows: 70px;
+    }
+    .banner_cst {
+        height: calc(100vh - 70px);
+    }
+    .header_cst_logo img {
+        max-width: 150px;
+    }
+    nav.header_cst_menu {
+        width: 30px;
+        height: 30px;
+    }
+}
+@media (max-width: 550px) {
+    .header_cst_contact {
+        display: none;
+    }
+    .banner_cst_image img {
+        max-width: 300px;
+    }
+    .banner_cst .banner_cst_text {
+        text-align: center;
+    }
+    .banner_cst_text h1 {
+        font-size: 1.5em !important;
+    }
+}

@@ -1,0 +1,88 @@
+:root {
+    --background-grad1: linear-gradient(45deg, #2193b0, #6dd5ed);
+    --background-grad2: linear-gradient(-55deg, #ff5f6d, #ffc371);
+    --container-size: 1600px;
+    --font-custom-1: 'Lato', sans-serif; /*HEADING FONT*/
+    --font-custom-2: 'Raleway', sans-serif; /*TEXT FONT*/
+    --custom-color-1: #ffc371; /* ORANGE */
+}
+
+a {
+    text-decoration: none;
+    color: #ffc371;
+}
+
+strong {
+    font-weight: 600;
+    font-family: var(--font-custom-2);
+}
+
+em {
+    font-family: var(--font-custom-2);
+    font-weight: initial;
+}
+
+body {
+    background: var(--background-grad2);
+    font-size: 18px;
+    color: #000;
+    font-family: var(--font-custom-2);
+}
+
+
+h1 {
+    font-family: var(--font-custom-1);
+    font-weight: 600;
+    font-size: 3em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+h2 {
+    font-family: var(--font-custom-1);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 2em;
+    line-height: 1.3em;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-family: var(--font-custom-1);
+    font-weight: 600;
+    font-size: 2.7em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+h4 {
+    font-family: var(--font-custom-1);
+    font-weight: 600;
+    font-size: 2.1em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+h5 {
+    font-family: var(--font-custom-1);
+    font-weight: 600;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+@media (max-width: 991px) {
+    h1 {
+        font-size: 2em !important;
+    }
+    h2 {
+        font-size: 1.7em !important;
+    }
+}
+
+@media (max-width: 767px) {
+
+    h2 {
+        font-size: 1.5em !important;
+    }
+}

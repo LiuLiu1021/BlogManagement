@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>登录注册页面</title>
+    <link rel="stylesheet" href="../static/css/index-style.css">
+</head>
+
+<body>
+<div class="dowebok" id="dowebok">
+    <div class="form-container sign-up-container">
+        <form action="" id="signUpForm">
+            <h1>注册</h1>
+            <!--                <div class="social-container">-->
+            <!--                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>-->
+            <!--                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>-->
+            <!--                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>-->
+            <!--                </div>-->
+            <!--                <span>或使用邮箱注册</span>-->
+            <!--                <dl></dl>-->
+            <div class="play">
+                <input id="upname" type="text" placeholder="姓名" name="name">
+                <span class="message"></span>
+            </div>
+            <div class="play">
+                <input id="upemail" type="email" placeholder="电子邮箱" name="email">
+                <span class="message"></span>
+            </div>
+            <div class="play">
+                <input id="uppassword" type="password" placeholder="密码" name="password">
+                <span class="message"></span></div>
+            <div class="play">
+                <input id="upconfirmpassword" type="password" placeholder="确认密码" name="password_confirmation">
+                <span class="message"></span></div>
+            <!--                <input type="submit" value="注册">-->
+            <button style="margin: 12px 0px">注册</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="" id="signInForm">
+            <h1>登录</h1>
+            <!--                <div class="social-container">-->
+            <!--                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>-->
+            <!--                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>-->
+            <!--                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>-->
+            <!--                </div>-->
+            <!--                <span>或使用您的帐号</span>-->
+            <div class="play">
+                <input id="inemail" type="email" placeholder="电子邮箱" name="email">
+                <span class="message"></span>
+            </div>
+            <div class="play">
+                <input id="inpassword" type="password" placeholder="密码" name="password">
+                <span class="message"></span>
+            </div>
+            <!--                <span class="message"></span>-->
+            <!--                <a href="#">忘记密码？</a>-->
+            <!--                <input type="submit" value="登录">-->
+            <button style="margin: 12px 0px">登录</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>已有帐号？</h1>
+                <p>请使用您的帐号进行登录</p>
+                <button class="ghost" id="signIn">登录</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>没有帐号？</h1>
+                <p>立即注册加入我们，和我们一起开始旅程吧</p>
+                <button class="ghost" id="signUp">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/index.js"></script>
+<script src="../static/jQuery/jquery-3.5.1.min.js"></script>
+<script>
+    $name = $("#upname")
+    $name.on("blur", function () {
+        // console.log("blur");
+        // console.log(this.value);
+        if (this.value === '') {
+            // console.log("empty")
+            $name.siblings('.message').html("请填写姓名").attr("style", "color:red;")
+        } else {
+            $name.siblings('.message').html("").attr("style", "color:red;")
+        }
+    })
+    $email = $("#upemail")
+    $email.on("blur", function () {
+        // console.log("blur");
+        // console.log(this.value);
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (this.value === '') {
+            // console.log("empty")
+            $email.siblings('.message').html("请填写邮箱").attr("style", "color:red;")
+        } else if (this.value.match(mailformat)) {
+            $email.siblings('.message').html("").attr("style", "color:red;")
+        } else {
+            $email.siblings('.message').html("邮箱格式不正确").attr("style", "color:red;")
+
+        }
+    })
+    $inemail = $("#inemail")
+    $inemail.on("blur", function () {
+        // console.log("blur");
+        // console.log(this.value);
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (this.value === '') {
+            // console.log("empty")
+            $inemail.siblings('.message').html("请填写邮箱").attr("style", "color:red;")
+        } else if (this.value.match(mailformat)) {
+            $inemail.siblings('.message').html("").attr("style", "color:red;")
+        } else {
+            $inemail.siblings('.message').html("邮箱格式不正确").attr("style", "color:red;")
+
+        }
+    })
+    $passwordin = $("#inpassword")
+    $passwordin.on("blur", function () {
+        // console.log("blur");
+        // console.log(this.value);
+        if (this.value === '') {
+            // console.log("empty")
+            $passwordin.siblings('.message').html("请填写密码").attr("style", "color:red;")
+        } else {
+            $passwordin.siblings('.message').html("").attr("style", "color:red;")
+        }
+    })
+    $password = $("#uppassword")
+    $password.on("blur", function () {
+        // console.log("blur");
+        // console.log(this.value);
+        if (this.value === '') {
+            // console.log("empty")
+            $password.siblings('.message').html("请填写密码").attr("style", "color:red;")
+        } else {
+            $password.siblings('.message').html("").attr("style", "color:red;")
+        }
+    })
+    $confirmpassword = $("#upconfirmpassword")
+    $confirmpassword.on("blur", function () {
+        // console.log("blur");
+        // console.log(this.value);
+        if (this.value === '') {
+            // console.log("empty")
+            $confirmpassword.siblings('.message').html("请填写确认密码").attr("style", "color:red;")
+        } else {
+            $confirmpassword.siblings('.message').html("").attr("style", "color:red;")
+        }
+    })
+    $form = $('#signUpForm')
+    $form.on('submit', (e) => {
+        e.preventDefault()
+        let hash = {}
+        let need = ['name', 'email', 'password', 'password_confirmation']
+        need.forEach((name) => {
+            let value = $form.find(`[name=${name}]`).val()
+            hash[name] = value
+        })
+        $form.find('.message').each((index, span) => {
+            $(span).text('')
+        })
+        if (hash['name'] === '') {
+            $form.find('[name="name"]').siblings('.message').text("请填写姓名")
+            return
+        }
+        if (hash['email'] === '') {
+            $form.find('[name="email"]').siblings('.message').text("请填写邮箱")
+            return
+        }
+        if (hash['password'] === '') {
+            $form.find('[name="password"]').siblings('.message').text("请填写密码")
+            return
+        }
+        if (hash['password_confirmation'] === '') {
+            $form.find('[name="password_confirmation"]').siblings('.message').text("请确认密码")
+            return
+        }
+        if (hash["password"] !== hash['password_confirmation']) {
+            $form.find('[name="password_confirmation"]').siblings('.message').text("密码不匹配")
+            return
+        }
+        $.post('http://localhost:5000/index/GET', hash)
+            .then((response) => {
+                    let message = response
+                    console.log(message)
+                    if (message === 'successed') {
+                        $form.find('[name="password_confirmation"]').siblings('.message')
+                            .text('注册成功')
+                    } else if (message === 'invalid') {
+                        $form.find('[name="password_confirmation"]').siblings('.message')
+                            .text('邮箱格式错误')
+                    } else if (message === 'used') {
+                        $form.find('[name="password_confirmation"]').siblings('.message')
+                            .text('邮箱已被注册')
+                    }
+                }
+
+                // , (xhr)=>{
+                //     console.log(xhr)
+                //     //服务器端设置了application/json头
+                //     let {message}=xhr.responseJSON
+                //     console.log(message)
+                //     if (message.email && message.email === 'invalid') {
+                //         $form.find('[name="password_confirmation"]')
+                //             .text('邮箱格式错误')
+                //     } else if (message === 'used') {
+                //         $form.find('[name="password_confirmation"]')
+                //             .text('邮箱已被注册')
+                //     }
+                // }
+            )
+        .catch(err=>{
+            console.log(err);
+        })
+
+    })
+    $formIn = $('#signInForm')
+    $emailin = $("#inemail")
+    $emailin.on("blur", function () {
+        console.log("blur");
+        // console.log(this.value);
+        if (this.value === '') {
+            // console.log("empty")
+            $emailin.siblings('.message').html("请填写邮箱").attr("style", "color:red;")
+        } else {
+            console.log("find cookie")
+            console.log(document.cookie)
+            let value1 = $formIn.find('[name="email"]').val()
+            // let value2 = $formIn.find('[name="password"]').val()
+            var cookie_arr = document.cookie.split(";")
+            var cookie;
+            for (i = 0; i < cookie_arr.length; i++) {
+                cookie = cookie_arr[i].split("=")
+                if (cookie[0] == value1) {
+                    console.log("find cookie,set password")
+                    var password_find = document.getElementById("inpassword")
+                    password_find.value = cookie[1];
+                }
+            }
+            $email.siblings('.message').html("").attr("style", "color:red;")
+        }
+    })
+    $formIn.on('submit', (e) => {
+            e.preventDefault()
+            let hash = {}
+            let need = ['email', 'password']
+            need.forEach((name) => {
+                let value = $formIn.find(`[name=${name}]`).val()
+                hash[name] = value
+            })
+            $formIn.find('.message').each((index, span) => {
+                $(span).text('')
+            })
+            // if(hash['name'] === '') {
+            //     $formIn.find('[name="name"]').siblings('.message').text("请填写姓名")
+            //     return
+            // }
+            if (hash['email'] === '') {
+                $formIn.find('[name="email"]').siblings('.message').text("请填写邮箱")
+                return
+            }
+            if (hash['password'] === '') {
+                $formIn.find('[name="password"]').siblings('.message').text("请填写密码")
+                return
+            }
+            // if(hash['password_confirmation'] === '') {
+            //     $formIn.find('[name="password_confirmation"]').siblings('.message').text("请确认密码")
+            //     return
+            // }
+            // if(hash["password"] !== hash['password_confirmation']) {
+            //     $formIn.find('[name="password_confirmation"]').siblings('.message').text("密码不匹配")
+            //     return
+            // }
+            $.post('http://localhost:8080/sign_in', hash)
+                .then((response) => {
+                        let message = response
+                        console.log(message)
+                        if (message.indexOf("successed") != -1) {
+                            let value1 = $formIn.find('[name="email"]').val()
+                            let value2 = $formIn.find('[name="password"]').val()
+                            var exp = new Date();
+                            exp.setTime(exp.getTime() + 20 * 1000)
+                            document.cookie = value1 + "=" + value2 + "; expires=" + exp.toGMTString()
+                            window.location.href = 'http://localhost:8080/homepage.html'
+                        } else if (message === 'Not Found') {
+                            $formIn.find('[name="password_confirmation"]').siblings('.message')
+                                .text('该用户未注册！请检查您的输入')
+                        }
+                    }
+                    // , (xhr)=>{
+                    //     console.log(xhr)
+                    //     //服务器端设置了application/json头
+                    //     let {message}=xhr.responseJSON
+                    //     console.log(message)
+                    //     if (message.email && message.email === 'invalid') {
+                    //         $form.find('[name="password_confirmation"]')
+                    //             .text('邮箱格式错误')
+                    //     } else if (message === 'used') {
+                    //         $form.find('[name="password_confirmation"]')
+                    //             .text('邮箱已被注册')
+                    //     }
+                    // }
+                )
+        }
+    )
+</script>
+
+</body>
+
+</html>
