@@ -1,0 +1,32 @@
+@import url(variables.css);
+@import url(header.css);
+@import url(home-grid.css);
+@import url(footer.css);
+@import url(blog_cards.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*@media用于媒体自适应*/
+@media (min-width: 1700px) {
+    .container {
+        max-width: var(--container-size);
+        margin: 0 auto;
+    }
+}
+@media (max-width: 1699px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 1300px) {
+    .container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+}

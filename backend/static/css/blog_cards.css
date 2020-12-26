@@ -1,0 +1,95 @@
+@import url(variables.css);
+
+.blog_cst {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 400px;
+    padding: 50px 0 100px;
+    gap: 20px;
+}
+
+.blog_cst_entry_title {
+    font-size: 1.2em;
+    padding: 20px 20px 0 20px;
+    font-family: var(--font-custom-1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    text-align: center;
+    color: #000;
+}
+
+.blog_cst_entry_info {
+    color: #000;
+    font-size: 0.7em;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.blog_cst_entry {
+    background-size: 50% auto;
+    background-position: center bottom 50px;
+    background-repeat: no-repeat;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 20px #ff876f;
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.blog_cst_entry:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s;
+}
+
+.blog_cst_entry:nth-child(1) {
+    background-image: url(../img/pic4.svg);
+}
+.blog_cst_entry:nth-child(2) {
+    background-image: url(../img/pic5.svg);
+}
+.blog_cst_entry:nth-child(3) {
+    background-image: url(../img/pic6.svg);
+}
+.blog_cst_entry:nth-child(4) {
+    background-image: url(../img/pic7.svg);
+}
+.blog_cst_entry:nth-child(5) {
+    background-image: url(../img/pic8.svg);
+}
+.blog_cst_entry:nth-child(6) {
+    background-image: url(../img/pic9.svg);
+}
+
+@media (max-width: 1700px) { 
+    .blog_cst_entry {
+        background-size: 70% auto;
+    }
+}
+
+@media (max-width: 991px) { 
+    .blog_cst {
+        grid-template-columns: 1fr 1fr;
+    }
+    .blog_cst_entry {
+        background-size: 60% auto;
+    }
+    .blog_cst_entry_title {
+        font-size: 1em;
+        padding: 10px 10px 0 10px;
+    }
+}
+
+@media (max-width: 767px) { 
+    .blog_cst {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 300px;
+        padding: 10px 0 100px;
+    }
+    .blog_cst_entry {
+        background-size: auto 50%;
+    }
+}

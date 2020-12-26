@@ -1,0 +1,1 @@
+{"user_id": "10086", "name": "missWang", "password": "10086", "email": "18301003@bjtu.edu.cn", "credit": 155, "role": 1, "state": 1, "reputation": 4}
